@@ -1,7 +1,14 @@
-LEX=flex
-BISON=bison
 CC=gcc
-OBJECT_1_NAME=1.app
+
+ifeq ($(OS),Windows_NT)
+	LEX=win_flex
+	BISON=win_bison
+	OBJECT_1_NAME=1.exe
+else
+	LEX=flex
+	BISON=bison
+	OBJECT_1_NAME=1.app
+endif
 
 all: 1.app
 
