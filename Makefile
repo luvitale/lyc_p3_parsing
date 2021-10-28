@@ -3,28 +3,28 @@ CC=gcc
 ifeq ($(OS),Windows_NT)
 	LEX=win_flex
 	BISON=win_bison
-	OBJECT_1_NAME=1.exe
+	EXT=exe
 else
 	LEX=flex
 	BISON=bison
-	OBJECT_1_NAME=1.app
+	EXT=app
 endif
 
-all: 1.app
+all: 1.app 2.app
 
-1.app: 1.yy.c 1.tab.c
-	$(CC) -o $(OBJECT_1_NAME) 1.yy.c 1.tab.c -fcommon
+%.app: %.yy.c %.tab.c
+	$(CC) -o $*.$(EXT) $? -fcommon
 
-1.yy.c: 1.l
-	$(LEX) -o 1.yy.c 1.l
+%.yy.c: %.l
+	$(LEX) -o $@ $<
 
-1.tab.c: 1.y
-	$(BISON) -o 1.tab.c -dyv 1.y
+%.tab.c: %.y
+	$(BISON) -o $@ -dyv $<
 
-test1: 1.app
-	./$(OBJECT_1_NAME) ./test/1/code.txt
+test%: %.app
+	./$*.$(EXT) ./test/$*/code.txt
 
-test: test1
+test: test1 test2
 
 clean:
 	rm -f *.yy.* *.app *.tab.* *.output
