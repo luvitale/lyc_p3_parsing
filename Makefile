@@ -10,7 +10,7 @@ else
 	EXT=app
 endif
 
-all: 1.app 2.app
+all: 1.app 2.app 3.app
 
 %.app: %.yy.c %.tab.c
 	$(CC) -o $*.$(EXT) $? -fcommon
@@ -24,7 +24,7 @@ all: 1.app 2.app
 test%: %.app
 	./$*.$(EXT) ./test/$*/code.txt
 
-test: test1 test2
+test: test1 test2 test3
 
 clean:
 	rm -f *.yy.* *.app *.tab.* *.output

@@ -43,7 +43,7 @@ d) Probar el parsing con el siguiente ejemplo: `( ((( ))) ( ) ( ) )` y obtener l
 
 e) Probar con FLEX y BISON y comparar la lista de reglas obtenida
 
-3. Dada la gramática del ejercicio 4 de la práctica 2
+3. Dada la gramática del ejercicio 4 de la [práctica 2](https://github.com/luvitale/lyc_p2_syntactic_analyzer)
 
 a) Generar el autómata de estados para el parsing SLR
 

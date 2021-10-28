@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        app: [1, 2]
+        app: [1, 2, 3]
         include:
           - os: ubuntu-latest
             os_name: ubuntu
@@ -59,7 +59,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.app }}.${{ matrix.original_extension }}
-          asset_name: ${{ matrix.app }}‒${{ matrix.os_name }}‒${{ steps.get_replaced_version.outputs.replaced }}${{ matrix.result_extension }}
+          asset_name: ${{ matrix.app }}-${{ matrix.os_name }}-${{ steps.get_replaced_version.outputs.replaced }}${{ matrix.result_extension }}
           tag: ${{ github.ref }}
 
       - name: Upload state output to release
@@ -68,5 +68,5 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.app }}.output
-          asset_name: ${{ matrix.app }}‒${{ steps.get_replaced_version.outputs.replaced }}.output
+          asset_name: ${{ matrix.app }}-${{ steps.get_replaced_version.outputs.replaced }}.output
           tag: ${{ github.ref }}
