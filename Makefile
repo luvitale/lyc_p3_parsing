@@ -1,15 +1,23 @@
 LEX=flex
 BISON=bison
 CC=gcc
+OBJECT_1_NAME=1.app
 
-1.app: lex.yy.c y.tab.c
-	$(CC) lex.yy.c y.tab.c -o 1.app
+all: 1.app
+
+1.app: 1.yy.c 1.tab.c
+	$(CC) -o $(OBJECT_1_NAME) 1.yy.c 1.tab.c -fcommon
 
 1.yy.c: 1.l
-	$(LEX) 1.l -o 1.yy.c
+	$(LEX) -o 1.yy.c 1.l
 
 1.tab.c: 1.y
-	$(BISON) -dyv 1.y -o 1.tab.c
+	$(BISON) -o 1.tab.c -dyv 1.y
+
+test1: 1.app
+	./$(OBJECT_1_NAME) ./test/1/code.txt
+
+test: test1
 
 clean:
 	rm -f *.yy.* *.app *.tab.* *.output

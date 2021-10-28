@@ -17,7 +17,7 @@ b) Definir los conjuntos Primeros y Siguientes
 
 c) Generar la tabla SLR
 
-d) Probar el parsing con el siguiente ejemplo: `id,id,id,id:=exp`; y obtener la lista de reglas
+d) Probar el parsing con el siguiente ejemplo: `id,id,id,id:=exp;` y obtener la lista de reglas
 
 e) Probar con FLEX y BISON y comparar la lista de reglas obtenida
 
